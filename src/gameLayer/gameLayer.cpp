@@ -1,19 +1,13 @@
 #define GLM_ENABLE_EXPERIMENTAL
 #include "gameLayer.h"
 #include <glad/glad.h>
-#include <glm/glm.hpp>
 #include <glm/gtx/transform.hpp>
-#include "platformInput.h"
-#include "imgui.h"
-#include <iostream>
-#include <sstream>
-#include "imfilebrowser.h"
 #include <gl2d/gl2d.h>
-#include <platformTools.h>
-
 
 
 gl2d::Renderer2D renderer;
+
+gl2d::Texture spaceShipTexture;
 
 bool initGame()
 {
@@ -21,7 +15,7 @@ bool initGame()
 	gl2d::init();
 	renderer.create();
 
-	
+	spaceShipTexture.loadFromFile(RESOURCES_PATH "spaceShip/ships/green.png", true);
 	
 	return true;
 }
@@ -43,17 +37,16 @@ bool gameLogic(float deltaTime)
 
 
 
-	renderer.renderRectangle({100,100, 100, 100}, Colors_Blue);
+	renderer.renderRectangle({100,100, 100, 100}, spaceShipTexture);
 
 
 	renderer.flush();
-
 
 	//ImGui::ShowDemoWindow();
 
 
 	return true;
-#pragma endregion
+//#pragma endregion
 
 }
 
